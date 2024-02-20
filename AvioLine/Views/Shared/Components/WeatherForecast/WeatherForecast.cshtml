@@ -1,0 +1,21 @@
+﻿@model WeatherForecastViewModel
+
+@{
+    var precipitation = Model.dailyForecasts.First().day.HasPrecipitation;
+}
+<div><p>Дата : @Model.dailyForecasts.First().Date</p></div>
+
+
+<div><p>Темпиратура: @Model.dailyForecasts.First().temperature.minimum.Value @Model.dailyForecasts.First().temperature.minimum.Unit</p></div>
+
+<div><p>Вероятность дождя: @Model.dailyForecasts.First().day.RainProbability % </p></div>
+
+<div><p>@if (precipitation == true)
+        {
+            <p>Осадки :Есть</p>
+        }
+        else
+        {
+        <p>Осадки :Нет</p>
+        }</div>
+

@@ -1,0 +1,105 @@
+﻿@model TicketViewModel
+
+@if (User.IsInRole(Role.Admin))
+{
+    <a class="btn btn-outline-primary" asp-area="Admin" asp-controller="Home" asp-action="Index" role="button">Билеты</a>
+}
+<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Купить билет</button>
+	<div style="margin:30px">
+<div class="row row-cols-1 row-cols-md-2 mb-2 text-center">
+    <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Погода в Нью Йорке</h4>
+            </div>
+            <div class="card-body">
+                @await Component.InvokeAsync("WeatherForecast");
+               
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Курс валют</h4>
+            </div>
+            <div class="card-body">
+                @await Component.InvokeAsync("Currency");
+
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Купить билеты</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" asp-controller="Tickets" asp-action="BuyTickets">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Откуда:</label>
+                        <input asp-for="DepartureCity" type="text" class="form-control" id="validationDefault01">
+                        <span asp-validation-for="DepartureCity" class="text-danger"></span>
+                    </div> 
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Куда:</label>
+                        <input asp-for="ArrivalCity" type="text" class="form-control" id="validationDefault01">
+                        <span asp-validation-for="ArrivalCity" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <input asp-for="Price" type="hidden" class="form-control" value="@Model.Price">
+
+                    </div>
+                    <div class="mb-3">
+                        <input asp-for="Id" type="hidden" class="form-control" value="@Guid.NewGuid().ToString()">
+
+                    </div>
+                    <div class="mb-3">
+                        <input asp-for="Time" type="hidden" class="form-control" value="@Model.Time">
+
+                    </div>
+                    <div class="mb-3">
+                        <input asp-for="Date" type="hidden" class="form-control" value="@Model.Date">
+
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Имя:</label>
+                        <input asp-for="UserFirstName" type="text" class="form-control" >
+                        <span asp-validation-for="UserFirstName" class="text-danger"></span>
+
+                    </div>                   
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Фамилия:</label>
+                        <input asp-for="UserLastName" type="text" class="form-control">
+                        <span asp-validation-for="UserLastName" class="text-danger"></span>
+
+                    </div>
+                
+
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Колличество билетов:</label>
+                        <input asp-for="Count" type="text" class="form-control" id="validationDefault01" >
+                        <span asp-validation-for="Count" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Подтвердить</button>
+           
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

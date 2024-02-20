@@ -1,0 +1,11 @@
+﻿@model CurrencyViewModel
+
+@{
+    var usd =(float) (1 / Model.conversion_rates.USD);
+    var eur =(float) (1 / Model.conversion_rates.EUR);
+    var cny = (float)(1 / @Model.conversion_rates.CNY);
+
+}
+<p>Доллар:@usd рублей</p>
+<p>Евро: @eur рублей</p>
+<p>Юань: @cny рублей</p>

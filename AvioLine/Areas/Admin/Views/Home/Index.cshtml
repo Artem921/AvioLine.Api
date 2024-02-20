@@ -1,0 +1,62 @@
+﻿@model List<TicketViewModel>
+@{
+	int i = 1;
+}
+<div style="margin:30px">
+	<h1 class="lead">Список билето</h1> 
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Откуда</th>
+				<th scope="col">Куда</th>
+				<th scope="col">Имя</th>
+				<th scope="col">Фамилия</th>
+				<th scope="col">Количество</th>
+				<th scope="col">Цена</th>
+				<th scope="col">Дата</th>
+				<th scope="col">Время</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var ticket in Model)
+			{
+				<tr>
+					<th scope="row">@i</th>
+					<td>@ticket.DepartureCity</td>
+					<td>@ticket.ArrivalCity</td>
+					<td>@ticket.UserFirstName</td>
+					<td>@ticket.UserLastName</td>
+					<td>@ticket.Count</td>
+					<td>@ticket.Price</td>
+					<td>@ticket.Date</td>
+					<td>@ticket.Time</td>
+			
+					<td>
+						<!-- Button trigger modal --><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#role_@i">
+							Удалить
+						</button>
+						<!-- Modal -->
+						<div class="modal fade" id="role_@i" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Удалить продукт</h5> <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body"> Вы точно хотите удалить продукт? </div>
+									<div class="modal-footer">
+										<a asp-controller="Products" asp-action="Delete" asp-route-id="@ticket.Id" class="btn btn-outline-primary">Подтвердить</a>
+										<a asp-controller="Admin" asp-action="Products" class="btn btn-outline-primary">Отмена</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				i += 1;
+			}
+		</tbody>
+	</table>
+</div>

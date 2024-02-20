@@ -1,0 +1,28 @@
+﻿@model LoginUserViewModel
+
+
+			<form method="post" asp-controller="Account" asp-action="Login">
+	<div class="mb-3">
+					<h1 class="lead">Вход</h1>
+				</div>
+						<div asp-validation-summary="ModelOnly"  class="text-danger"></div>
+	<div class="mb-3">
+					<input asp-for="ReturnUrl" type="hidden" class="form-control" value="@Model.ReturnUrl">
+
+				</div>
+	<div class="mb-3">
+					<input asp-for="UserName" type="text" class="form-control" id="validationDefault01" placeholder="Email">
+					<span asp-validation-for="UserName" class="text-danger"></span>
+				</div>
+	<div class="mb-3">
+					<input type="text" asp-for="Password" class="form-control" id="validationDefault02" placeholder="Пароль">
+					<span asp-validation-for="Password" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<input type="checkbox" asp-for="RememberMe" class="form-check-input" value="true">
+					<span class="check-label"> Запомнить меня?</span>
+				</div>
+				<button class="btn btn-outline-primary" type="submit">Войти</button>
+			</form>
+
+
