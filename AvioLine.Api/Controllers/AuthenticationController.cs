@@ -34,7 +34,10 @@ public class AuthenticationController : ControllerBase
         {
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(ConfigurationApplication.AppSetting["JWT:Secret"]));
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-            var tokeOptions = new JwtSecurityToken(issuer: ConfigurationApplication.AppSetting["JWT:ValidIssuer"], audience: ConfigurationApplication.AppSetting["JWT:ValidAudience"], claims: new List<Claim>(), expires: DateTime.Now.AddMinutes(6), signingCredentials: signinCredentials);
+            var tokeOptions = new JwtSecurityToken(issuer: ConfigurationApplication.AppSetting["JWT:ValidIssuer"], 
+                                                  audience: ConfigurationApplication.AppSetting["JWT:ValidAudience"],
+                                                  claims: new List<Claim>(),
+                                                  expires: DateTime.Now.AddMinutes(6), signingCredentials: signinCredentials);
             var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
             return Ok(new JWTTokenResponse
             {

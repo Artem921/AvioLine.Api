@@ -2,7 +2,7 @@
 
 @if (User.IsInRole(Role.Admin))
 {
-    <a class="btn btn-outline-primary" asp-area="Admin" asp-controller="Home" asp-action="Index" role="button">Билеты</a>
+    <a class="btn btn-outline-primary" asp-area="Admin" asp-controller="Admin" asp-action="Index" role="button">Билеты</a>
 }
 <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Купить билет</button>
 	<div style="margin:30px">
@@ -33,9 +33,6 @@
 
 </div>
 </div>
-
-
-
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -71,7 +68,10 @@
                         <input asp-for="Date" type="hidden" class="form-control" value="@Model.Date">
 
                     </div>
+                    <div class="mb-3">
+                        <input asp-for="UserId" type="hidden" class="form-control" value="@Model.UserId">
 
+                    </div>
 
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Имя:</label>

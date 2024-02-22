@@ -9,11 +9,11 @@ namespace AvioLine.Areas.Admin.Controllers
 {
     [Area(Role.Admin)]
     [Authorize(Roles =Role.Admin)]
-    public class HomeController : Controller
+    public class AdminController : Controller
     {
-        private readonly ITicketService ticketService;
+        private readonly ITicketService<TicketViewModel> ticketService;
 
-        public HomeController(ITicketService ticketService)
+        public AdminController(ITicketService<TicketViewModel> ticketService)
         {
             this.ticketService = ticketService;
         }
@@ -21,11 +21,11 @@ namespace AvioLine.Areas.Admin.Controllers
         public async Task< IActionResult> Index()
         {
 
-            var ticketsDTO = await ticketService.GetAllAsync();
+            var tickets = await ticketService.GetAllAsync();
 
-            var ticketsVM = Mapping.Mapper.Map<IEnumerable<TicketViewModel>>(ticketsDTO);
-
-            return View(ticketsVM);
+            return View(tickets);
         }
+
+
     }
 }

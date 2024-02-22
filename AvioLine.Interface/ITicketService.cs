@@ -2,14 +2,14 @@
 
 namespace AvioLine.Interfaces
 {
-    public interface ITicketService
+    public interface ITicketService<T> where T : class
     {
-        Task<IEnumerable<TicketDTO>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllAsync();
 
-        Task<TicketDTO> GetByIdAsync(string id);
+        Task<T> GetByIdAsync(string id);
 
         Task DeleteAsync(string id);
 
-        Task AddAsync(TicketDTO ticket);
+        Task AddAsync(T ticket);
     }
 }

@@ -23,7 +23,7 @@ namespace AvioLine.Domain.Models
 
         public string Date { get => DateTime.Today.ToString("d"); }
 
-
+        public string? UserId { get; set; }
         public string Time { get => DateTime.Now.ToLongTimeString(); }
         [Required]
         [Display(Name = "Имя")]

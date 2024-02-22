@@ -1,21 +1,14 @@
 ﻿using AvioLine.Domain.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AvioLine.Controllers
 {
 	public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            this.logger = logger;
-            logger.LogInformation("Приложение запущенно");
-        }
-
         public IActionResult Index()
         {
-            return View(new TicketViewModel());
+            return View(new TicketViewModel{ UserId=User.Identity.GetUserId()});
         }
 
         

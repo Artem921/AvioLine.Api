@@ -9,11 +9,11 @@ namespace AvioLine.Api.Controllers
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/tickets")]
     [ApiController]
-    public class TicketController : ControllerBase, ITicketService
+    public class TicketController : ControllerBase, ITicketService<TicketDTO>
     {
-        private readonly ITicketService ticketService;
+        private readonly ITicketService<TicketDTO> ticketService;
 
-        public TicketController(ITicketService ticketService)
+        public TicketController(ITicketService<TicketDTO> ticketService)
         {
             this.ticketService = ticketService;
         }

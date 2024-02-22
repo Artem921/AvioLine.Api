@@ -1,19 +1,17 @@
-﻿using AvioLine.Domain.DTO;
-using AvioLine.Domain.Models;
+﻿using AvioLine.Domain.Models;
 using AvioLine.Interfaces;
-using Mappers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 namespace AvioLine.Controllers
 {
- 
+
     [Authorize]
     public class TicketsController : Controller
     {
-        private readonly ITicketService ticketService;
+        private readonly ITicketService<TicketViewModel> ticketService;
 
-        public TicketsController(ITicketService ticketService)
+        public TicketsController(ITicketService<TicketViewModel> ticketService)
         {
             this.ticketService = ticketService;
         }
@@ -21,12 +19,13 @@ namespace AvioLine.Controllers
         [HttpPost]
         public async Task <IActionResult> BuyTickets(TicketViewModel model)
         {
-            var ticket= Mapping.Mapper.Map<TicketDTO>(model);
+            if (ModelState.IsValid)
+            {
+                await ticketService.AddAsync(model);
 
-            ticket.UserId = User.Identity.GetUserId();
+                return RedirectToAction("Index", "Home");
 
-            await ticketService.AddAsync(ticket);
-
+            }
             return RedirectToAction("Index", "Home");
         }
 

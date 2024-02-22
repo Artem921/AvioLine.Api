@@ -4,6 +4,7 @@ using AvioLine.Api.Services.Abstract;
 using AvioLine.Dal;
 using AvioLine.Dal.Repositories;
 using AvioLine.Data;
+using AvioLine.Domain.DTO;
 using AvioLine.Domain.Entities;
 using AvioLine.Interfaces;
 using Mappers;
@@ -17,6 +18,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+
+//Метод AddSwaggerGen предназначен для добавления информации об API, сведений об авторе и лицензии.
 builder.Services.AddSwaggerGen(opt =>
 {
     opt.SwaggerDoc("v1", new OpenApiInfo
@@ -31,6 +34,7 @@ builder.Services.AddSwaggerGen(opt =>
             Url = new Uri("https://store.steampowered.com/app/1682200/BJORN/"),
         },
     });
+    //AddSecurityDefinition настройка защиты
     opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Scheme = "Bearer",
@@ -40,6 +44,7 @@ builder.Services.AddSwaggerGen(opt =>
         Description = "Bearer Authentication with JWT Token",
         Type = SecuritySchemeType.Http
     });
+    //AddSecurityRequirement добавит заголовок авторизации к каждой конечной точке при отправке запроса
     opt.AddSecurityRequirement(new OpenApiSecurityRequirement {
         {
             new OpenApiSecurityScheme {
@@ -68,7 +73,7 @@ builder.Services.AddAuthentication(opt => {
     };
 });
 builder.Services.AddScoped<ILoginService, LoginService>();
-builder.Services.AddTransient<ITicketService, TicketsRepository>();
+builder.Services.AddTransient<ITicketService<TicketDTO>, TicketsRepository>();
 builder.Services.AddDbContext<ApplicationContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("avioLine")));
 builder.Services.AddDbContext<IdentityContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("avioLine")));
 builder.Services.AddIdentity<User, Role>(options =>
@@ -94,7 +99,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+}app.UseMiddleware<JWTMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AvioLine.Dal.Repositories
 {
-    public class TicketsRepository : ITicketService
+    public class TicketsRepository : ITicketService<TicketDTO>
     {
         private readonly ApplicationContext context;
 

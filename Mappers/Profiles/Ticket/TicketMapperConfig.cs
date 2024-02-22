@@ -11,10 +11,9 @@ namespace Mappers.Profiles.Ticket
         {
             CreateMap<TicketEntity, TicketDTO>().ReverseMap();
 
-            CreateMap<TicketDTO, TicketViewModel>();
+            CreateMap<TicketDTO, TicketViewModel>().ReverseMap();
 
-            CreateMap<TicketViewModel, TicketDTO>()
-                .ForMember(p => p.UserId, x => x.Ignore());
+          
 
 
         }

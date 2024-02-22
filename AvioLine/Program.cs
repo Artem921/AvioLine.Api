@@ -4,6 +4,7 @@ using AvioLine.Clients.Services.Identity;
 using AvioLine.Clients.Services.Ticket;
 using AvioLine.Clients.WeatherForecast;
 using AvioLine.Domain.Entities;
+using AvioLine.Domain.Models;
 using AvioLine.Interfaces;
 using Mappers;
 using Microsoft.AspNetCore.Identity;
@@ -56,7 +57,7 @@ builder.Services.AddTransient<IRoleStore<Role>, RolesClient>();
 
 builder.Services.AddSingleton<IWeatherForecastClient,WeatherForecastClient>();
 builder.Services.AddSingleton<IExchangeRateClient, ExchangeRateClient>();
-builder.Services.AddSingleton<ITicketService, TicketClient>();
+builder.Services.AddSingleton<ITicketService<TicketViewModel>, TicketClient>();
 Mapping.CreateMapper();
 
 

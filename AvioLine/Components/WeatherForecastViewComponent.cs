@@ -17,8 +17,6 @@ namespace AvioLine.Components
         {
             var weatherVM = _client.Get();
 
-
-
             return View("WeatherForecast", weatherVM);
         }
     }

@@ -2,6 +2,7 @@
 using AvioLine.Clients.Services.Abstract;
 using AvioLine.Domain;
 using AvioLine.Domain.DTO.ExchangeRateDTO;
+using AvioLine.Domain.Models.ExchangeRateViewModel;
 using Microsoft.Extensions.Configuration;
 
 namespace AvioLine.Clients.Services.ExchangeRate
@@ -12,11 +13,12 @@ namespace AvioLine.Clients.Services.ExchangeRate
         {
         }
 
-        public CurrencyDTO Get()
+        public CurrencyViewModel Get()
         {
-            var currency = Get<CurrencyDTO>(serviceAddress);
+            var currencyDTO = Get<CurrencyDTO>(serviceAddress);
 
-            return currency;
+            var currencyVM = Mappers.Mapping.Mapper.Map<CurrencyViewModel>(currencyDTO);
+            return currencyVM;
         }
     }
 }

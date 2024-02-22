@@ -8,7 +8,7 @@ namespace AvioLine.Api.Services
 
         public bool CheckLogin(LoginUserViewModel login)
         {
-            if ("Admin".Equals(login.UserName) && "Aa1.".Equals(login.Password))
+            if ("admin".Equals(login.UserName) && "Aa1.".Equals(login.Password))
             {
                 return true;
             }

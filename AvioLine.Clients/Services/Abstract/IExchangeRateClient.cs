@@ -1,10 +1,10 @@
-﻿using AvioLine.Domain.DTO.ExchangeRateDTO;
+﻿using AvioLine.Domain.Models.ExchangeRateViewModel;
 
 namespace AvioLine.Clients.Services.Abstract
 {
     public interface IExchangeRateClient
     {
-        CurrencyDTO Get();
+        CurrencyViewModel Get();
 
     }
 }

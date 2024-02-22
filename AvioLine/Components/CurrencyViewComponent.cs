@@ -1,5 +1,4 @@
 ﻿using AvioLine.Clients.Services.Abstract;
-using AvioLine.Domain.Models.ExchangeRateViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AvioLine.Components
@@ -14,9 +13,7 @@ namespace AvioLine.Components
         }
         public IViewComponentResult Invoke()
         {
-            var currencyDTO = _client.Get();
-
-            var currencyVM = Mappers.Mapping.Mapper.Map<CurrencyViewModel>(currencyDTO);
+            var currencyVM = _client.Get();
 
             return View("Currency", currencyVM);
         }
