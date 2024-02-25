@@ -163,10 +163,11 @@ namespace AvioLine.Clients.Services.Identity
             throw new NotImplementedException();
         }
 
-        public Task<bool> IsInRoleAsync(User user, string roleName, CancellationToken cancellationToken)
+        public async Task<bool> IsInRoleAsync(User user, string roleName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-        }
+            var result= await PostAsync($"{serviceAddress}/inrole/{roleName}", user);
+			return await result.Content.ReadAsAsync<bool>();
+		}
 
         public Task RemoveClaimsAsync(User user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
         {
@@ -205,7 +206,7 @@ namespace AvioLine.Clients.Services.Identity
         {
             user.NormalizedEmail = normalizedEmail;
 
-            return PostAsync($"{serviceAddress}/SetEmil/{normalizedEmail}", user);
+            return PostAsync($"{serviceAddress}/SetNormalEmail/{normalizedEmail}", user);
         }
 
         public Task SetNormalizedUserNameAsync(User user, string? normalizedName, CancellationToken cancellationToken)
@@ -242,7 +243,7 @@ namespace AvioLine.Clients.Services.Identity
 
         public async Task<IdentityResult> UpdateAsync(User user, CancellationToken cancellationToken)
         {
-            var result = await PutAsync($"{serviceAddress}/User", user);
+            var result = await PutAsync($"{serviceAddress}/UserUpdate", user);
             var ret = await result.Content.ReadAsAsync<bool>();
             return ret ? IdentityResult.Success : IdentityResult.Failed();
         }

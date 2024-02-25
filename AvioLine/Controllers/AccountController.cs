@@ -1,7 +1,14 @@
-﻿using AvioLine.Domain.Entities;
+﻿using AvioLine.Clients.Services.Abstract;
+using AvioLine.Domain.Entities;
+using AvioLine.Domain.Models;
 using AvioLine.Domain.Models.Account;
+using AvioLine.Domain.Models.JWTToken;
+using AvioLine.Interfaces;
+using AvioLine.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace AvioLine.Controllers
 {
@@ -13,18 +20,20 @@ namespace AvioLine.Controllers
 
         private readonly ILogger<AccountController> logger;
 
-        public AccountController(UserManager<User>UserManager,SignInManager<User>signInManager,ILogger<AccountController> logger)
-        {
-            this.userManager = UserManager;
-            this.signInManager = signInManager;
-            this.logger = logger;
-        }
-        /// <summary>
-        /// Регестрация пользователя
-        /// </summary>
-        /// <returns></returns>
-        #region Register
-        public IActionResult Register()=>View(new RegisterUserViewModel());
+
+
+		public AccountController(UserManager<User> UserManager, SignInManager<User> signInManager, ILogger<AccountController> logger)
+		{
+			this.userManager = UserManager;
+			this.signInManager = signInManager;
+			this.logger = logger;
+		}
+		/// <summary>
+		/// Регестрация пользователя
+		/// </summary>
+		/// <returns></returns>
+		#region Register
+		public IActionResult Register()=>View(new RegisterUserViewModel());
 
         [HttpPost,ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterUserViewModel model)
@@ -36,7 +45,9 @@ namespace AvioLine.Controllers
 
             var user = new User
             {
-                UserName = model.Email
+                UserName = model.Email,
+                Email= model.Email
+                
             };
 
             using (logger.BeginScope("Создание нового пользователя", model.Email, DateTime.UtcNow.ToLongTimeString()))
@@ -84,7 +95,7 @@ namespace AvioLine.Controllers
 
             if (login_result.Succeeded)
             {
-
+              
                 logger.LogInformation("Пользователь успешно вошёл", model.UserName, DateTime.UtcNow.ToLongTimeString());
                 if (Url.IsLocalUrl(model.ReturnUrl))
                 {

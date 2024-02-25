@@ -1,13 +1,10 @@
 ﻿using AvioLine.Domain.DTO;
 using AvioLine.Interfaces;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AvioLine.Api.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    [Route("api/tickets")]
+	[Route("api/tickets")]
     [ApiController]
     public class TicketController : ControllerBase, ITicketService<TicketDTO>
     {

@@ -3,11 +3,10 @@ using AvioLine.Clients.Services.Abstract;
 using AvioLine.Domain;
 using AvioLine.Domain.DTO.ExchangeRateDTO;
 using AvioLine.Domain.Models.ExchangeRateViewModel;
-using Microsoft.Extensions.Configuration;
 
 namespace AvioLine.Clients.Services.ExchangeRate
 {
-    public class ExchangeRateClient : BaseClient, IExchangeRateClient
+	public class ExchangeRateClient : BaseClient, IExchangeRateClient
     {
         public ExchangeRateClient() : base( ConstantAddressApi.ExchangeRateAddress)
         {

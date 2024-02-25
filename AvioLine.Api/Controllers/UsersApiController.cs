@@ -60,8 +60,14 @@ namespace AvioLine.Api.Controllers
             await userStore.UpdateAsync(user);
         }
 
-        [HttpPost("SetEmil/{normalizedEmail}")]
-        public async Task SetNormalizedEmailAsync([FromBody] User user, string normalizedEmail) => await userStore.SetNormalizedEmailAsync(user, normalizedEmail);
+        [HttpPost("SetNormalEmail/{normalizedEmail}")]
+        public async Task SetNormalizedEmailAsync([FromBody] User user, string normalizedEmail)
+        {
+            await userStore.SetNormalizedEmailAsync(user, normalizedEmail);
+
+			await userStore.UpdateAsync(user);
+		}
+
 
         [HttpPost("User")]
         public async Task<bool> CreateAsync([FromBody] User user)
@@ -125,7 +131,7 @@ namespace AvioLine.Api.Controllers
         [HttpPost("HasPasswordHash")]
         public async Task<bool> HasPasswordHashAsync([FromBody] User user) => await userStore.HasPasswordAsync(user);
 
-        [HttpPut("User")]
+        [HttpPut("UserUpdate")]
         public async Task<bool> UpdateAsync([FromBody] User user) => (await userStore.UpdateAsync(user)).Succeeded;
         #endregion
 

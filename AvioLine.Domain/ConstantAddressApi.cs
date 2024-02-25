@@ -7,6 +7,7 @@
         public const string TicketAddress = "http://localhost:5265/api/tickets";
         public const string UsersAddress = "http://localhost:5265/api/users";
         public const string RolesAddress = "http://localhost:5265/api/roles";
+        public const string AuthorizeAddress = "http://localhost:5265/api/Authorization";
 
     }
 }

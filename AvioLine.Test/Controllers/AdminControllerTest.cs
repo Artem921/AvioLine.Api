@@ -1,5 +1,4 @@
 ﻿using AvioLine.Areas.Admin.Controllers;
-using AvioLine.Domain.DTO;
 using AvioLine.Domain.Models;
 using AvioLine.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +7,7 @@ using Moq;
 using Assert = Xunit.Assert;
 namespace AvioLine.Test.Controllers
 {
-    [TestClass]
+	[TestClass]
     public class AdminControllerTest
     {
         [TestMethod]

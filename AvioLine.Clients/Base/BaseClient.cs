@@ -49,7 +49,7 @@ namespace AvioLine.Clients.Base
 		protected async Task<HttpResponseMessage>PostAsync<T>(string url, T item)
         {
             var response = await client.PostAsJsonAsync(url, item);
-
+			
 			return response.EnsureSuccessStatusCode();
 		}
 

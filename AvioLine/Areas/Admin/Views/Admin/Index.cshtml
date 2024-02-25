@@ -3,7 +3,7 @@
 	int i = 1;
 }
 <div style="margin:30px">
-	<h1 class="lead">Список билето</h1> 
+	<h1 class="lead">Список билето</h1>
 	<table class="table">
 		<thead>
 			<tr>
@@ -31,7 +31,7 @@
 					<td>@ticket.Price</td>
 					<td>@ticket.Date</td>
 					<td>@ticket.Time</td>
-			
+
 					<td>
 						<!-- Button trigger modal --><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#role_@i">
 							Удалить
@@ -47,8 +47,8 @@
 									</div>
 									<div class="modal-body"> Вы точно хотите удалить продукт? </div>
 									<div class="modal-footer">
-										<a asp-controller="Products" asp-action="Delete" asp-route-id="@ticket.Id" class="btn btn-outline-primary">Подтвердить</a>
-										<a asp-controller="Admin" asp-action="Products" class="btn btn-outline-primary">Отмена</a>
+										<a asp-controller="Admin" asp-action="Delete" asp-route-id="@ticket.Id" class="btn btn-outline-primary">Подтвердить</a>
+										<a  asp-controller="Admin" asp-action="Index" class="btn btn-outline-primary">Отмена</a>
 									</div>
 								</div>
 							</div>

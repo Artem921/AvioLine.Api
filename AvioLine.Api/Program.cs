@@ -1,6 +1,4 @@
 using AvioLine.Api.Helper;
-using AvioLine.Api.Services;
-using AvioLine.Api.Services.Abstract;
 using AvioLine.Dal;
 using AvioLine.Dal.Repositories;
 using AvioLine.Data;
@@ -72,7 +70,6 @@ builder.Services.AddAuthentication(opt => {
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(ConfigurationApplication.AppSetting["JWT:Secret"]))
     };
 });
-builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddTransient<ITicketService<TicketDTO>, TicketsRepository>();
 builder.Services.AddDbContext<ApplicationContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("avioLine")));
 builder.Services.AddDbContext<IdentityContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("avioLine")));
@@ -99,7 +96,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-}app.UseMiddleware<JWTMiddleware>();
+}
 app.UseAuthentication();
 app.UseAuthorization();
 

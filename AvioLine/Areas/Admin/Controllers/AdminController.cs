@@ -1,13 +1,12 @@
 ﻿using AvioLine.Domain.Entities;
 using AvioLine.Domain.Models;
 using AvioLine.Interfaces;
-using Mappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AvioLine.Areas.Admin.Controllers
 {
-    [Area(Role.Admin)]
+	[Area(Role.Admin)]
     [Authorize(Roles =Role.Admin)]
     public class AdminController : Controller
     {
@@ -26,6 +25,13 @@ namespace AvioLine.Areas.Admin.Controllers
             return View(tickets);
         }
 
+       
+		public async Task<IActionResult> Delete(string id)
+		{
 
-    }
+			await ticketService.DeleteAsync(id);
+
+            return RedirectToAction("Index");
+		}
+	}
 }

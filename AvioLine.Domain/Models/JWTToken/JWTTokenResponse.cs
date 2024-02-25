@@ -1,4 +1,4 @@
-﻿namespace AvioLine.Domain.Models.Account
+﻿namespace AvioLine.Domain.Models.JWTToken
 {
     public class JWTTokenResponse
     {
