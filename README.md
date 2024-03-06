@@ -3,3 +3,10 @@
 
 # This project has its own implementation of the IUserStore interface, which is defined in the namespace at Microsoft.AspNetCore.Identity.
 # All responsibility for authorization and registration of users rests with the project AvioLine.Api.
+
+## Description of projects
+# AvioLine main - project.
+# AvioLine.Api -  interacts with the database.
+# AvioLine.Clients - sends requests toAvioLine.Api
+# AvioLine.Dal - Database
+# AvioLine.Domain - entities
