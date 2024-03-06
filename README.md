@@ -1,5 +1,8 @@
 # Test site using our own and third-party APIs
 # To use the full functionality of the application, log in with your details
+
+## The application accesses the weather forecast API, exchange rates and displays them on the main page. You can use the app to buy tickets, display a list of tickets, and delete tickets.
+
 ## Login: admin , Password: Aa1.
 ## Used the API:[AccuWeather](https://developer.accuweather.com/),[ExchangeRate-API](https://www.exchangerate-api.com/)
 
