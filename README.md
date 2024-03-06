@@ -12,4 +12,4 @@
 ### AvioLine.Domain - entities
 
 # Application architecture
-![Image alt] (https://github.com/Artem921/AvioLine.Api/blob/master/AvioLine/wwwroot/Images/arhi.png)
+![] (https://github.com/Artem921/AvioLine.Api/blob/master/AvioLine/wwwroot/Images/arhi.png)
