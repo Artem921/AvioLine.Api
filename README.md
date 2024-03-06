@@ -4,10 +4,10 @@
 ## The application accesses the weather forecast API, exchange rates and displays them on the main page. You can use the app to buy tickets, display a list of tickets, and delete tickets.
 
 ## Login: admin , Password: Aa1.
-## Used the API:[AccuWeather](https://developer.accuweather.com/),[ExchangeRate-API](https://www.exchangerate-api.com/)
+### Used the API:[AccuWeather](https://developer.accuweather.com/),[ExchangeRate-API](https://www.exchangerate-api.com/)
 
-## This project has its own implementation of the IUserStore interface, which is defined in the namespace at Microsoft.AspNetCore.Identity.
-## All responsibility for authorization and registration of users rests with the project AvioLine.Api.
+### This project has its own implementation of the IUserStore interface, which is defined in the namespace at Microsoft.AspNetCore.Identity.
+### All responsibility for authorization and registration of users rests with the project AvioLine.Api.
 
 ## Description of projects
 ### AvioLine main - project.
