@@ -10,3 +10,6 @@
 ### AvioLine.Clients - sends requests toAvioLine.Api
 ### AvioLine.Dal - Database
 ### AvioLine.Domain - entities
+
+# Application architecture
+![Image alt] (https://github.com/Artem921/AvioLine.Api/blob/master/AvioLine/wwwroot/Images/arhi.png)
