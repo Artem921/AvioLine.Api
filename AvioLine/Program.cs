@@ -25,7 +25,11 @@ builder.Services.AddLogging(log =>
 });
 builder.Services.AddIdentity<User, Role>(options =>
 {
-    options.Password.RequiredLength = 4;
+    options.Password.RequiredLength = 3;
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
 
 }).AddDefaultTokenProviders();
 
