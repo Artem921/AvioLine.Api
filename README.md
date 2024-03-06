@@ -12,5 +12,5 @@
 ### AvioLine.Domain - entities
 
 # Application architecture
-<img src="[resources/image.png](https://github.com/Artem921/AvioLine.Api/blob/master/AvioLine/wwwroot/Images/arhi.png)" />
+<img src="https://github.com/Artem921/AvioLine.Api/blob/master/AvioLine/wwwroot/Images/arhi.png" />
 
