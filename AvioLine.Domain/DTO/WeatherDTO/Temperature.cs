@@ -2,6 +2,6 @@
 {
     public class Temperature
     {
-       public  Minimum minimum {  get; set; }
+       public  Minimum? minimum {  get; set; }
     }
 }

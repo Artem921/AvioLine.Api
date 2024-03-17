@@ -35,13 +35,13 @@ namespace AvioLine.Clients.Base
 
         protected async Task<T> GetAsync<T>(string url) where T : new()
         {
-            var response = await client.GetAsync(url);
-       
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<T>();
-            }
+                var response = await client.GetAsync(url);
 
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsAsync<T>();
+                }
+           
             return new T();
         }
 

@@ -1,15 +1,10 @@
-using AvioLine.Clients.Services.Abstract;
-using AvioLine.Clients.Services.ExchangeRate;
-using AvioLine.Clients.Services.Identity;
-using AvioLine.Clients.Services.Ticket;
-using AvioLine.Clients.WeatherForecast;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using AvioLine.Domain.Entities;
-using AvioLine.Domain.Models;
-using AvioLine.Interfaces;
+using AvioLine.Utils;
 using Mappers;
 using Microsoft.AspNetCore.Identity;
 using NLog.Web;
-
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -34,9 +29,6 @@ builder.Services.AddIdentity<User, Role>(options =>
 }).AddDefaultTokenProviders();
 
 
-
-
-
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Cookie.Name = "AvioLine";
@@ -46,29 +38,10 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.SlidingExpiration = true;
 
 });
-
-#region WebApi Identity clients
-
-builder.Services.AddTransient<IUserStore<User>, UsersClient>()
-    .AddTransient<IUserPasswordStore<User>,UsersClient>()
-    .AddTransient<IUserEmailStore<User>,UsersClient>()
-    .AddTransient<IUserClaimStore<User>,UsersClient>()
-     .AddTransient<IUserTwoFactorStore<User>, UsersClient>()
-     .AddTransient<IUserLoginStore<User>, UsersClient>();
-
-builder.Services.AddTransient<IRoleStore<Role>, RolesClient>();
-#endregion
-
-builder.Services.AddSingleton<IWeatherForecastClient,WeatherForecastClient>();
-builder.Services.AddSingleton<IExchangeRateClient, ExchangeRateClient>();
-builder.Services.AddSingleton<ITicketService<TicketViewModel>, TicketClient>();
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureContainer<ContainerBuilder>(builder => { builder.RegisterModule(new AutoFacConfig()); });
 Mapping.CreateMapper();
 
-
-
 var app = builder.Build();
-
-
 
 if (!app.Environment.IsDevelopment())
 {
@@ -96,10 +69,5 @@ app.UseEndpoints(endpoints =>
     pattern: "{controller=Home}/{action=Index}/{id?}"
         );
 });
-
-
-
-
-
 
 app.Run();
