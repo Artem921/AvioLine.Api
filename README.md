@@ -16,6 +16,5 @@
 ### AvioLine.Dal - Database
 ### AvioLine.Domain - entities
 
-# Application architecture
-<img src="https://github.com/Artem921/AvioLine.Api/blob/master/AvioLine/wwwroot/Images/arhi.png" />
+
 
